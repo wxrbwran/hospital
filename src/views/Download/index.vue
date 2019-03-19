@@ -1,5 +1,5 @@
 <template>
-	<div class="download"
+  <div class="download"
     :style="{backgroundImage: `url(${background})`}"
   >
     <img

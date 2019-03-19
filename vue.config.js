@@ -31,15 +31,12 @@ module.exports = {
   },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'test') {
-      config.output = {
-        path: '/Users/wuxiaoran/Sites/online-hospital/dist',
-        publicPath: '/',
-        filename: 'js/[name].[contenthash:8].js',
-        chunkFilename: 'js/[name].[contenthash:8].js'
-      }
+      config.output.filename = 'js/[name].[contenthash:8].js';
+      config.output.chunkFilename = 'js/[name].[contenthash:8].js';
     }
-  } ,
+  },
   productionSourceMap: false,
+  lintOnSave: process.env.NODE_ENV === 'development',
   css: {
     extract: ['production', 'test'].includes(process.env.NODE_ENV),
     loaderOptions: {
