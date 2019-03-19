@@ -1,5 +1,5 @@
 <template>
-	<div class="home">
+  <div class="home">
     <NavBar class="nav" title="首页" />
     <div class="home-content">
       <div class="welcome">
@@ -35,7 +35,7 @@
         专业的互联网医院门诊部 让您不再找医生感觉困难啦
       </div>
     </div>
-	</div>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
@@ -80,9 +80,9 @@ export default class Home extends Vue {
     ];
   }
 
-  get hospitalName () {
+  get hospitalName() {
     return this.$store.getters.name;
-  };
+  }
 
   get hospitalLogo() {
     return this.$store.getters.logo;
@@ -92,7 +92,7 @@ export default class Home extends Vue {
     return this.$store.getters.bg;
   }
   created() {
-    if (!this.hospitalLogo) {
+    if (!this.hospitalName) {
       const { id } = this.$route.query;
       this.$store.dispatch('fetchHospitalInfo', id);
     }
