@@ -29,11 +29,16 @@ module.exports = {
         return options;
       });
   },
-
-  publicPath: undefined,
-  outputDir: undefined,
-  assetsDir: undefined,
-  runtimeCompiler: undefined,
+  configureWebpack: (config) => {
+    if (process.env.NODE_ENV === 'test') {
+      config.output = {
+        path: '/Users/wuxiaoran/Sites/online-hospital/dist',
+        publicPath: '/',
+        filename: 'js/[name].[contenthash:8].js',
+        chunkFilename: 'js/[name].[contenthash:8].js'
+      }
+    }
+  } ,
   productionSourceMap: false,
   css: {
     extract: ['production', 'test'].includes(process.env.NODE_ENV),
