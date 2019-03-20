@@ -1,4 +1,4 @@
-# internet_hospital
+# online_hospital
 
 ## Project setup
 ```
@@ -10,12 +10,13 @@ yarn install
 yarn run dev
 ```
 
+### Run tests env
+```
+yarn run test
+```
+
+
 ### Compiles and minifies for production
 ```
 yarn run build
-```
-
-### Run your tests
-```
-yarn run test
 ```
