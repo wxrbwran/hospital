@@ -54,7 +54,7 @@ export default class Home extends Vue {
   android:string = android;
   iPhone:string = iPhone;
   onClickLeft():void {
-    this.$router.push({ name: 'home' });
+    this.$router.back();
   }
 }
 </script>

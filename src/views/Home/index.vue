@@ -17,7 +17,11 @@
         </div>
       </div>
       <div class="service">
-        <h3 class="">主打服务</h3>
+        <h3 class="service-mark">
+          <span class="before" />
+          主打服务
+          <span class="after"/>
+        </h3>
         <ul class="service-list">
           <li
             v-for="service in services"
@@ -39,7 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { NavBar } from 'vant';
+import { NavBar, Toast } from 'vant';
 import outpatient from './img/outpatient_service.png';
 import slow from './img/slow_disease.png';
 import referral from './img/referral.png';
@@ -94,7 +98,11 @@ export default class Home extends Vue {
   created() {
     if (!this.hospitalName) {
       const { id } = this.$route.query;
-      this.$store.dispatch('fetchHospitalInfo', id);
+      if (id) {
+        this.$store.dispatch('fetchHospitalInfo', id);
+      } else {
+        Toast.fail('医院不存在！');
+      }
     }
   }
   handleServeClick(fn:any) {
@@ -160,13 +168,6 @@ export default class Home extends Vue {
     }
   }
   .service{
-    > h3{
-      font-size: 17px;
-      color: $main-text-color;
-      font-weight: bold;
-      margin: 34px auto 18px;
-      text-align: center;
-    }
     &-list{
       @include flex(row, wrap, flex-start, flex-start);
       &__item{
@@ -195,6 +196,29 @@ export default class Home extends Vue {
 
         }
       }
+    }
+  }
+  .service-mark{
+    font-size: 17px;
+    color: $main-text-color;
+    font-weight: bold;
+    margin: 34px auto 18px;
+    text-align: center;
+    .before,
+    .after{
+      opacity: 0.39;
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      vertical-align: middle;
+    }
+    .before{
+      margin-right: 10px;
+      background-image: linear-gradient(-90deg, #414C5E 0%, rgba(65,76,94,0.00) 100%);
+    }
+    .after{
+      margin-left: 10px;
+      background-image: linear-gradient(-90deg, rgba(65,76,94,0.00) 0%, #414C5E 100%);
     }
   }
   .footer{

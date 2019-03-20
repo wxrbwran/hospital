@@ -5,7 +5,6 @@ console.log(`运行环境：${process.env.NODE_ENV}`);
 
 module.exports = {
   parallel: true,
-  // publicPath: process.env.NODE_ENV === 'production' ? '/vant-demo/' : '/',
   chainWebpack: (config) => {
     config.module
       .rule('ts')
@@ -19,7 +18,7 @@ module.exports = {
                 libraryName: 'vant',
                 libraryDirectory: 'es',
                 style: true,
-              })
+              }),
             ],
           }),
           compilerOptions: {

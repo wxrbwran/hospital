@@ -13,6 +13,11 @@ interface iHospital{
   introduction: string;
 }
 
+interface iState{
+  id: string,
+  hospital: iHospital
+}
+
 interface response{
   [index:string] : any;
 }
@@ -23,6 +28,7 @@ const plugins = process.env.NODE_ENV === 'production'
   ? [] : [createLogger({ collapsed: true })];
 export default new Vuex.Store({
   state: {
+    id: '',
     hospital: {
       name: '',
       pictureUrl: bg,
@@ -31,21 +37,26 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    name: (state:{ hospital:iHospital }) => state.hospital.name,
-    bg: (state:{ hospital:iHospital }) => state.hospital.pictureUrl,
-    logo: (state:{ hospital:iHospital }) => state.hospital.logoUrl,
-    info: (state:{ hospital:iHospital }) => state.hospital.introduction,
+    name: (state:iState) => state.hospital.name,
+    bg: (state:iState) => state.hospital.pictureUrl,
+    logo: (state:iState) => state.hospital.logoUrl,
+    info: (state:iState) => state.hospital.introduction,
   },
   mutations: {
     /* eslint-disable no-param-reassign */
-    handleChangeHospitalInfo(state:{ hospital:iHospital }, data):void {
+    handleSaveHospitalId(state:iState, id: string):void {
+      state.id = id;
+    },
+    handleChangeHospitalInfo(state:iState, data):void {
       state.hospital = Object.assign({}, state.hospital, data);
     },
   },
   actions: {
-    async fetchHospitalInfo({ commit }, id = 'olLDlK') {
+    async fetchHospitalInfo({ commit }, id = '') {
       try {
+        commit('handleSaveHospitalId', id);
         const res:response = await api(`institution/${id}`);
+        // console.log(res);
         const data:any = {};
         for (const item of Object.keys(res)) {
           if (res[item]) {
@@ -54,7 +65,8 @@ export default new Vuex.Store({
         }
         commit('handleChangeHospitalInfo', data);
       } catch (e) {
-        Toast.fail(e);
+        // console.log(e.message);
+        Toast.fail(e.message);
       }
     },
   },

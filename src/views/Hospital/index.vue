@@ -12,6 +12,7 @@
         <h3 class="title">
           <Icon :name="separated" />
           医院简介
+          <span class="after" />
         </h3>
         <p class="detail">{{ hospitalInfo }}</p>
       </div>
@@ -40,7 +41,7 @@ export default class Home extends Vue {
   }
 
   onClickLeft() {
-    this.$router.push({ name: 'home' });
+    this.$router.back();
   }
 }
 </script>
@@ -63,11 +64,15 @@ export default class Home extends Vue {
     text-align: left;
     margin-bottom: 15px;
     position: relative;
-    &:after{
+    .after{
       position: absolute;
+      top: 10px;
+      right: 0;
       width: 230px;
       height: 1px;
-      border: 1px solid #ebebeb;
+      margin-left: 14px;
+      background: #EBEBEB;
+      display: inline-block;
     }
   }
   .detail{
