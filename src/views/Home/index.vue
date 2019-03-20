@@ -11,8 +11,8 @@
         <div class="note">
           <img :src=hospitalLogo class="note-logo" alt="">
           <div class="note-text">
-            <h3>{{ hospitalName }}互联网医院</h3>
-            <p>花最少的钱  看最好的医生</p>
+            <h3>{{ hospitalName }}</h3>
+            <p>花少量的钱  看最好的医生</p>
           </div>
         </div>
       </div>
@@ -30,8 +30,10 @@
             :style="{backgroundImage: `url(${service.icon})`}"
             @click="handleServeClick(service.fn)"
           >
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.extra }}</p>
+            <h3
+            >{{ service.title }}</h3>
+            <p
+            >{{ service.extra }}</p>
           </li>
         </ul>
       </div>
@@ -177,6 +179,7 @@ export default class Home extends Vue {
         overflow: hidden;
         background: #f8fbfe left top no-repeat;
         background-size: cover;
+        display: block;
         &:nth-child(1),
         &:nth-child(3) {
           margin-right: 9px;

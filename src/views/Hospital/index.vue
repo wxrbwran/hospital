@@ -3,9 +3,13 @@
     <NavBar
       title="医院介绍"
       class="nav"
-      left-arrow
-      @click-left="onClickLeft"
     />
+    <img
+      :src="back"
+      class="back"
+      alt=""
+      @click="onClickLeft"
+    >
     <div class="hospital__content">
       <img class="bg" :src="hospitalBg" alt="">
       <div class="hospital__info">
@@ -23,6 +27,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { NavBar, Icon } from 'vant';
 import separated from './img/separated.png';
+import back from '@/assets/img/back.png';
 
 @Component({
   components: {
@@ -31,7 +36,7 @@ import separated from './img/separated.png';
 })
 export default class Home extends Vue {
   separated:string = separated;
-
+  back:string = back;
   get hospitalInfo() {
     return this.$store.getters.info;
   }
@@ -48,7 +53,16 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
   .hospital{
+    position: absolute;
+    height: 100%;
     background-color: #fff;
+  }
+  .back{
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    z-index: 1;
+    @include size(16px);
   }
   .hospital__content{
     padding: 0 15px;

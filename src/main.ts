@@ -5,7 +5,7 @@ import router from './router';
 import store from './store/index';
 import './assets/css/reset.css';
 
-// FastClick.attach(document.body);
+// FastClick['attach'](document.body);
 
 Vue.config.productionTip = false;
 

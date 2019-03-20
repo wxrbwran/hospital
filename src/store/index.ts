@@ -47,7 +47,7 @@ export default new Vuex.Store({
     handleSaveHospitalId(state:iState, id: string):void {
       state.id = id;
     },
-    handleChangeHospitalInfo(state:iState, data):void {
+    handleChangeHospitalInfo(state:iState, data:iHospital):void {
       state.hospital = Object.assign({}, state.hospital, data);
     },
   },
